@@ -15,7 +15,11 @@
     <Project Path="Enrollment.Spa.Flow.Tests/Enrollment.Spa.Flow.Tests.csproj" Id="12998e98-a8d0-4a87-b4ff-98cce8106832" />
   </Folder>
   <Folder Name="/_Solution Items/">
+    <File Path=".github/workflows/cd.yml" />
+    <File Path=".github/workflows/check-for-ab-number.yml" />
+    <File Path=".github/workflows/ci.yml" />
     <File Path="CHANGELOG.md" />
+    <File Path="CodeCoverage.runsettings" />
     <File Path="global.json" />
     <File Path="README.md" />
   </Folder>
