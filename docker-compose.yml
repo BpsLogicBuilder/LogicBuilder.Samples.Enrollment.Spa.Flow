@@ -1,0 +1,6 @@
+services:
+  enrollment.spa.api:
+    image: ${DOCKER_REGISTRY-}enrollmentspaapi
+    build:
+      context: .
+      dockerfile: Enrollment.Spa.Api/Dockerfile
