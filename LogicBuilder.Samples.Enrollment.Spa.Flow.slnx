@@ -1,0 +1,18 @@
+<Solution>
+  <Folder Name="/API/" />
+  <Folder Name="/Business/">
+    <Project Path="Enrollment.Domain/Enrollment.Domain.csproj" />
+  </Folder>
+  <Folder Name="/EF/">
+    <Project Path="Enrollment.Data/Enrollment.Data.csproj" />
+  </Folder>
+  <Folder Name="/SPA/">
+    <Project Path="Enrollment.Spa.Flow/Enrollment.Spa.Flow.csproj" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="Enrollment.Spa.Flow.Tests/Enrollment.Spa.Flow.Tests.csproj" Id="12998e98-a8d0-4a87-b4ff-98cce8106832" />
+  </Folder>
+  <Folder Name="/_Solution Items/">
+    <File Path="global.json" />
+  </Folder>
+</Solution>
