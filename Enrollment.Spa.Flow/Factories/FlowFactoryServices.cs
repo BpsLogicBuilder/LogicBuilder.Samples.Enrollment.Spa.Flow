@@ -1,6 +1,7 @@
 ﻿using Enrollment.Spa.Flow;
-using Enrollment.Spa.Flow.Factories;
-using Enrollment.Spa.Flow.Interfaces;
+using LogicBuilder.App.Spa.Utils;
+using LogicBuilder.App.Spa.Utils.Factories;
+using LogicBuilder.App.Spa.Utils.Interfaces;
 using LogicBuilder.RulesDirector;
 using System;
 

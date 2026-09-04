@@ -1,6 +1,7 @@
 ﻿using Enrollment.Domain.Entities;
-using Enrollment.Spa.Flow.Interfaces;
-using Enrollment.Spa.Flow.Responses.TransientFlows;
+using LogicBuilder.App.Spa.Business.Requests.TransientFlows;
+using LogicBuilder.App.Spa.Business.Responses.TransientFlows;
+using LogicBuilder.App.Spa.Utils.Interfaces;
 using LogicBuilder.Expressions.Utils.ExpressionDescriptors;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -25,7 +26,7 @@ namespace Enrollment.Spa.Flow.Tests
             ITransientFlowHelper flowHelper = serviceProvider!.GetRequiredService<ITransientFlowHelper>();
 
             //act
-            var result = flowHelper.RunSelectorFlow(new Requests.TransientFlows.SelectorFlowRequest
+            var result = flowHelper.RunSelectorFlow(new SelectorFlowRequest
             {
                 Entity = new AdmissionsModel { ProgramType = "degreePrograms" },
                 ReloadItemsFlowName = "admissionsprogramselector"
@@ -45,7 +46,7 @@ namespace Enrollment.Spa.Flow.Tests
             ITransientFlowHelper flowHelper = serviceProvider!.GetRequiredService<ITransientFlowHelper>();
 
             //act & assert
-            var exception = Assert.Throws<InvalidOperationException>(() => flowHelper.RunSelectorFlow(new Requests.TransientFlows.SelectorFlowRequest
+            var exception = Assert.Throws<InvalidOperationException>(() => flowHelper.RunSelectorFlow(new SelectorFlowRequest
             {
                 Entity = new AdmissionsModel { ProgramType = "invalidProgramType" },
                 ReloadItemsFlowName = "admissionsprogramselector"

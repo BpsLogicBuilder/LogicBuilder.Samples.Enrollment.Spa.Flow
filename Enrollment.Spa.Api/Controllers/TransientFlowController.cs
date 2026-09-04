@@ -1,5 +1,5 @@
-﻿using Enrollment.Spa.Flow.Interfaces;
-using Enrollment.Spa.Flow.Requests.TransientFlows;
+﻿using LogicBuilder.App.Spa.Business.Requests.TransientFlows;
+using LogicBuilder.App.Spa.Utils.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Enrollment.Spa.Api.Controllers

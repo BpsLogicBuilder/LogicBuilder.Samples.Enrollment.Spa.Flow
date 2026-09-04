@@ -1,11 +1,12 @@
 ﻿using AutoMapper;
 using Enrollment.Domain.Entities;
 using Enrollment.Spa.Flow.Cache;
-using Enrollment.Spa.Flow.Interfaces;
-using Enrollment.Spa.Flow.Requests;
-using Enrollment.Spa.Flow.ScreenSettings.Views;
 using LogicBuilder.App.Spa.AutoMapperProfiles;
+using LogicBuilder.App.Spa.Business.Requests;
+using LogicBuilder.App.Spa.Business.ScreenSettings.Views;
 using LogicBuilder.App.Spa.Forms.Configuration.Common;
+using LogicBuilder.App.Spa.Utils;
+using LogicBuilder.App.Spa.Utils.Interfaces;
 using LogicBuilder.EntityFrameworkCore.Mapping;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging.Abstractions;
