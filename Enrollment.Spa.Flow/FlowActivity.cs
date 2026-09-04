@@ -1,4 +1,4 @@
-﻿using Enrollment.Spa.Flow.Interfaces;
+﻿using LogicBuilder.App.Spa.Utils.Interfaces;
 using LogicBuilder.RulesDirector;
 using System.Collections.ObjectModel;
 using System.Globalization;

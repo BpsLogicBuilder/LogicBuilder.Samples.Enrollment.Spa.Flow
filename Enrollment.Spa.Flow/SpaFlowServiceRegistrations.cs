@@ -1,8 +1,5 @@
 ﻿using AutoMapper;
 using Enrollment.Spa.Flow;
-using Enrollment.Spa.Flow.Cache;
-using Enrollment.Spa.Flow.Cache.Interfaces;
-using Enrollment.Spa.Flow.Interfaces;
 using LogicBuilder.App.Spa.AutoMapperProfiles;
 using LogicBuilder.App.Utils.Rules;
 using LogicBuilder.EntityFrameworkCore.Mapping;
@@ -19,8 +16,6 @@ namespace Microsoft.Extensions.DependencyInjection
         public static IServiceCollection AddSpaFlowServices(this IServiceCollection services)
         {
             return services
-                .AddAppUtilsServices()
-                .AddHttpClient()
                 .AddFlowFactories()
                 .AddRulesCacheService
                 (
@@ -40,12 +35,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         ]
                     )
                 )
-                .AddTransient<ICustomActions, CustomActions>()
-                .AddTransient<ICustomDialogs, CustomDialogs>()
-                .AddTransient<IFlowManager, FlowManager>()
-                .AddTransient<ITransientFlowHelper, TransientFlowHelper>()
-                .AddScoped<IFlowDataCache, FlowDataCache>()
-                .AddScoped<Progress>();
+                .AddSpaUtilsServices();
         }
 
         public static IServiceCollection AddAutoMapperServices(this IServiceCollection services)
