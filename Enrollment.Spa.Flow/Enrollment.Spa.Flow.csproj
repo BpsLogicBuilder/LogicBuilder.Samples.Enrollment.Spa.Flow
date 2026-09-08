@@ -59,6 +59,8 @@
     <None Remove="Rulesets\report.resources" />
     <None Remove="Rulesets\residency.module" />
     <None Remove="Rulesets\residency.resources" />
+    <None Remove="Rulesets\set_persistent_keys.module" />
+    <None Remove="Rulesets\set_persistent_keys.resources" />
   </ItemGroup>
 
   <ItemGroup>
@@ -114,13 +116,15 @@
     <EmbeddedResource Include="Rulesets\report.resources" />
     <EmbeddedResource Include="Rulesets\residency.module" />
     <EmbeddedResource Include="Rulesets\residency.resources" />
+    <EmbeddedResource Include="Rulesets\set_persistent_keys.module" />
+    <EmbeddedResource Include="Rulesets\set_persistent_keys.resources" />
   </ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="LogicBuilder.App.Spa.AutoMapperProfiles" Version="1.0.4" />
 		<PackageReference Include="LogicBuilder.App.Spa.Forms.Configuration" Version="1.0.2" />
 		<PackageReference Include="LogicBuilder.App.Spa.Forms.Parameters" Version="1.0.3" />
-		<PackageReference Include="LogicBuilder.App.Spa.Utils" Version="1.0.1" />
+		<PackageReference Include="LogicBuilder.App.Spa.Utils" Version="1.0.2" />
 		<PackageReference Include="LogicBuilder.App.Utils" Version="1.0.7" />
 		<PackageReference Include="LogicBuilder.EntityFrameworkCore" Version="8.0.3" />
 		<PackageReference Include="LogicBuilder.RulesDirector" Version="2.0.6" />
