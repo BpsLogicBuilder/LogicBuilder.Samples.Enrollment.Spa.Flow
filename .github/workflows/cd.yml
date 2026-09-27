@@ -70,3 +70,54 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: dotnet-sonarscanner end /d:sonar.token="${{ env.SONAR_TOKEN }}"
+
+  deploy-spa-workflow-app:
+    name: Deploy SPA Workfow App
+    runs-on: ubuntu-latest
+    if: github.repository_owner == 'BpsLogicBuilder'
+    permissions:
+      id-token: write
+      contents: read
+    needs: test
+    steps:
+
+    - name: Checkout repository
+      uses: actions/checkout@v6
+
+    - uses: azure/login@a457da9ea143d694b1b9c7c869ebb04ebe844ef5
+      with:
+        client-id: ${{ secrets.ARM_DEPLOYER_CLIENT_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+    - name: Get Deployment Outputs
+      id: get_deployment_outputs
+      env:
+        RESOURCE_GROUP: ${{ secrets.AZURE_RG_ENROLLMENT }}
+      run: |
+          ACR_NAME=$(az deployment group show --resource-group ${{ env.RESOURCE_GROUP }} --name main --query properties.outputs.acrName.value -o tsv)
+          echo "::add-mask::$ACR_NAME"
+
+          echo "acr_name=$ACR_NAME" >> $GITHUB_OUTPUT
+
+    - name: Build and Upload Image
+      env:
+        IMAGE_TAG: "v1.0.${{ github.run_number }}"
+        IMAGE_NAME: "enrollmentspaapi"
+        ACR_NAME: ${{ steps.get_deployment_outputs.outputs.acr_name }}
+      run: |
+        echo "ACR NAME ${{ env.ACR_NAME}}"
+        az acr build --registry ${{ env.ACR_NAME }} --image ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} --image ${{ env.IMAGE_NAME }}:latest --file ./Enrollment.Spa.Api/Dockerfile .
+
+    - name: Update Container App image source
+      uses: azure/arm-deploy@65ae74fb7aec7c680c88ef456811f353adae4d06
+      env:
+        IMAGE_TAG: "v1.0.${{ github.run_number }}"
+        RESOURCE_GROUP: ${{ secrets.AZURE_RG_ENROLLMENT }}
+      with:
+        scope: resourcegroup
+        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
+        resourceGroupName: ${{ env.RESOURCE_GROUP}}
+        parameters: imageTag=${{ env.IMAGE_TAG }}
+        template: ./infrastructure/enrollmentspaapi.bicep
+        failOnStdErr: false
