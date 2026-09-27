@@ -8,6 +8,10 @@
   <Folder Name="/EF/">
     <Project Path="Enrollment.Data/Enrollment.Data.csproj" />
   </Folder>
+  <Folder Name="/Infra/">
+    <File Path="infrastructure/BicepCli_enrollmentspaapi.txt" />
+    <File Path="infrastructure/enrollmentspaapi.bicep" />
+  </Folder>
   <Folder Name="/SPA/">
     <Project Path="Enrollment.Spa.Flow/Enrollment.Spa.Flow.csproj" />
   </Folder>
