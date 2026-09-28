@@ -15,6 +15,8 @@ spec:
       labels:
         app: enrollment-spa-api
     spec:
+      nodeSelector:
+        workload: apps
       automountServiceAccountToken: false
       serviceAccountName: ENROLLMENT_SPA_API_SERVICEACCOUNT_NAME
       containers:
