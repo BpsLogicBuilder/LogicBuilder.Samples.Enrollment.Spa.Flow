@@ -12,6 +12,9 @@
     <File Path="infrastructure/BicepCli_enrollmentspaapi.txt" />
     <File Path="infrastructure/enrollmentspaapi.bicep" />
   </Folder>
+  <Folder Name="/Infra/aks/">
+    <File Path="infrastructure/aks/deployment.yaml" />
+  </Folder>
   <Folder Name="/SPA/">
     <Project Path="Enrollment.Spa.Flow/Enrollment.Spa.Flow.csproj" />
   </Folder>
@@ -19,6 +22,7 @@
     <Project Path="Enrollment.Spa.Flow.Tests/Enrollment.Spa.Flow.Tests.csproj" Id="12998e98-a8d0-4a87-b4ff-98cce8106832" />
   </Folder>
   <Folder Name="/_Solution Items/">
+    <File Path=".github/workflows/cd-aks.yaml" />
     <File Path=".github/workflows/cd.yml" />
     <File Path=".github/workflows/check-for-ab-number.yml" />
     <File Path=".github/workflows/ci.yml" />
