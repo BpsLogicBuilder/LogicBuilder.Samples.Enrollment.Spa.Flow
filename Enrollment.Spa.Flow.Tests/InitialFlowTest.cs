@@ -11,6 +11,7 @@ using LogicBuilder.EntityFrameworkCore.Mapping;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging.Abstractions;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
@@ -40,7 +41,7 @@ namespace Enrollment.Spa.Flow.Tests
             IFlowManager flowManager = serviceProvider!.GetRequiredService<IFlowManager>();
 
             //act
-            var result = flowManager.Start(initialFlow, 10);
+            var result = flowManager.Start(initialFlow, 99);
 
             //assert
             Assert.Equal(ViewType.FlowComplete, result.ScreenSettings.ViewType);
@@ -62,6 +63,21 @@ namespace Enrollment.Spa.Flow.Tests
         }
 
         [Fact]
+        public void FlowWithChatTarget_StopsAtChatScreen()
+        {
+            //arrange
+            IFlowManager flowManager = serviceProvider!.GetRequiredService<IFlowManager>();
+
+            //act
+            var result = flowManager.Start(initialFlow, TargetModules.Chat);
+
+            //assert
+            var screenSettings = Assert.IsType<ScreenSettings<ChatFormSettingsDescriptor>>(result.ScreenSettings);
+            Assert.Equal(ViewType.Chat, result.ScreenSettings.ViewType);
+            Assert.Equal(600, screenSettings.Settings.ChatWidth);
+        }
+
+        [Fact]
         public void FlowWithAcademicTarget_StopsAtAcademicScreen()
         {
             //arrange
@@ -72,6 +88,37 @@ namespace Enrollment.Spa.Flow.Tests
             var result = flowManager.Start(initialFlow, TargetModules.Academic);
 
             //assert
+            var screenSettings = Assert.IsType<ScreenSettings<EditFormSettingsDescriptor>>(result.ScreenSettings);
+            Assert.Equal(ViewType.Edit, result.ScreenSettings.ViewType);
+            Assert.Equal("Academic", screenSettings.Settings.Title);
+        }
+
+        [Fact]
+        public void PersistentFlowItemsFronNavBarRequest_AreTransferredToTheFlowDataCache_AndFlowSettings()
+        {
+            //arrange
+            IFlowManager flowManager = serviceProvider!.GetRequiredService<IFlowManager>();
+            var persistentFlowItems = new Dictionary<string, object> { ["UserId"] = 1, ["UserName"] = "Smith101", ["UserRating"] = 9.5 };
+
+            //act
+            var result = flowManager.NavStart
+            (
+                new NavBarRequest
+                {
+                    PersistentFlowItems = persistentFlowItems,
+                    InitialModuleName = initialFlow,
+                    TargetModule = TargetModules.Academic
+                }
+            );
+
+            //assert
+            Assert.Equal(1, (int)flowManager.FlowDataCache.Items["UserId"]);
+            Assert.Equal("Smith101", (string)flowManager.FlowDataCache.Items["UserName"]);
+            Assert.Equal(9.5, (double)flowManager.FlowDataCache.Items["UserRating"]);
+
+            Assert.Equal(1, (int)result.PersistentFlowItems["UserId"]);
+            Assert.Equal("Smith101", result.PersistentFlowItems["UserName"]);
+            Assert.Equal(9.5, result.PersistentFlowItems["UserRating"]);
             var screenSettings = Assert.IsType<ScreenSettings<EditFormSettingsDescriptor>>(result.ScreenSettings);
             Assert.Equal(ViewType.Edit, result.ScreenSettings.ViewType);
             Assert.Equal("Academic", screenSettings.Settings.Title);

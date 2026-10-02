@@ -1,3 +1,4 @@
+* 2026-10-02 - AB#231: Add Chat target module.
 * 2026-09-28 - AB#212: Add workload affinity label.
 * 2026-09-28 - AB#212: Add CD workflow.
 * 2026-09-27 - AB#211: Add CD workflow.

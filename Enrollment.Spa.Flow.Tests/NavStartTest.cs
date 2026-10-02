@@ -42,7 +42,7 @@ namespace Enrollment.Spa.Flow.Tests
             IFlowManager flowManager = serviceProvider!.GetRequiredService<IFlowManager>();
 
             //act
-            var result = flowManager.NavStart(new NavBarRequest { InitialModuleName = initialFlow, TargetModule = 10 });
+            var result = flowManager.NavStart(new NavBarRequest { InitialModuleName = initialFlow, TargetModule = 99 });
 
             //assert
             Assert.Equal(ViewType.FlowComplete, result.ScreenSettings.ViewType);
