@@ -24,7 +24,6 @@ builder.Services.AddCors(options =>
     });
 });
 
-builder.Services.AddCors();
 builder.Services.AddControllers().AddJsonOptions
 (
     options =>

@@ -25,6 +25,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         typeof(FlowActivity),
                         [
                             typeof(LogicBuilder.App.Utils.Interfaces.ITypeHelper).Assembly,
+                            typeof(LogicBuilder.App.Spa.Business.Requests.RequestBase).Assembly,
                             typeof(LogicBuilder.App.Spa.Forms.Parameters.CommandButtonParameters).Assembly,
                             typeof(LogicBuilder.App.Spa.Forms.Configuration.CommandButtonDescriptor).Assembly,
                             typeof(LogicBuilder.Forms.Parameters.Expansions.SelectExpandDefinitionParameters).Assembly,
