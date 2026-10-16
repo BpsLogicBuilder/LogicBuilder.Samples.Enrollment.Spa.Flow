@@ -1,3 +1,4 @@
+* 2026-10-16 - AB#248: Rename cd-aks.yaml to cd-aks.yml.
 * 2026-10-02 - AB#232: Latest LogicBuilder.App.Spa.* packages.
 * 2026-10-02 - AB#231: Add Chat target module.
 * 2026-09-28 - AB#212: Add workload affinity label.
