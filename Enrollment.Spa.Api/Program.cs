@@ -1,3 +1,4 @@
+using Azure.Monitor.OpenTelemetry.AspNetCore;
 using Enrollment.Spa.Api;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
@@ -24,6 +25,7 @@ builder.Services.AddCors(options =>
     });
 });
 
+builder.Services.AddOpenTelemetry().UseAzureMonitor();
 builder.Services.AddControllers().AddJsonOptions
 (
     options =>
@@ -45,6 +47,8 @@ var app = builder.Build();
 app.UseCors(SecureCorsPolicy);
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
